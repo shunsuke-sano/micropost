@@ -1,0 +1,8 @@
+<h1>change current user name</h1>
+
+<%= form_with(model: @user, local: true) do |f| %>
+  <%= f.label :name ,'username' %>
+  <%= f.text_field :name %>
+  <%= f.submit 'rename'%>
+<% end %>
+

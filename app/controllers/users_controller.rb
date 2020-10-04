@@ -7,6 +7,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.order(id: :desc).page(params[:page])
+    
+    counts(@user)
   end
 
   def new
@@ -25,9 +28,25 @@ class UsersController < ApplicationController
     end
   end
   
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    
+    
+    if @user.update(user_params)
+      flash[:success] = 'renamed'
+      redirect_to @user
+    else
+      flash.now[:danger] = 'can not use the name'
+      render :edit
+    end
+  end
   private
   
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_conrimation)
+    params.require(:user).permit(:name, :email, :age, :password, :password_conrimation)
   end
 end
