@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 2020_10_08_052350) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "age"
   end
 
   add_foreign_key "favorites", "microposts"
